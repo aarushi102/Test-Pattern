@@ -3,17 +3,39 @@ stages:
   - test
   - deploy
 
-build_job:
-  stage : build
-  script :
-    - echo "Build done"
+
+
 
 test_job:
-  stage : test
-  script :
-    - echo "Done tests"
+  stage: test
+  script:
+    - echo "No tests defined for this project."  # Placeholder for actual testing commands
+
+before_script:
+   - apt-get update && apt-get install -y awscli
+   - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+   - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+   - aws configure set region $AWS_DEFAULT_REGION 
 
 deploy_job:
-  stage : deploy
-  script : 
+  stage: deploy
+  script:
+    - apt-get update -qy
+    - apt-get install -y openssh-client  # Install SSH client
+    - mkdir -p ~/.ssh  # Create the SSH directory
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa  # Add SSH key
+     # Set permissions for the SSH key
+    - ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts 
+     # Add GitLab host to known_hosts file
+    # - ssh-keyscan -H 3.84.209.181 >> ~/.ssh/known_hosts 
+    - chmod 600 ~/.ssh/id_rsa 
+    - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
+    - ssh ubuntu@$EC2_IPADDRESS
+    - cd /var/www/html/test-pattern/Test-Pattern
+    - git pull origin main  # Replace 'main' with your branch name
+
     - echo "Hello"
+
+      
+  only:
+    - main
