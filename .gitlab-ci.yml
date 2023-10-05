@@ -25,7 +25,7 @@ deploy_job:
     - mkdir -p ~/.ssh  # Create the SSH directory
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa  # Add SSH key
      # Set permissions for the SSH key
-    - ssh-keyscan -H gitlab.com >> ~/.ssh/known_hosts 
+    - ssh-keyscan -H github.com >> ~/.ssh/known_hosts 
      # Add GitLab host to known_hosts file
     # - ssh-keyscan -H 3.84.209.181 >> ~/.ssh/known_hosts 
     - chmod 600 ~/.ssh/id_rsa 
