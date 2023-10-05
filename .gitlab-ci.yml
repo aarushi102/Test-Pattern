@@ -1,5 +1,5 @@
 stages:
-  - build
+  
   - test
   - deploy
 
@@ -32,7 +32,7 @@ deploy_job:
     # - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
     - ssh ubuntu@$EC2_IPADDRESS
     - cd /var/www/html/test-pattern/Test-Pattern
-    - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
+    - git remote add origin https://github.com/aarushi102/Test-Pattern.git
     - git pull origin main  # Replace 'main' with your branch name
 
     - echo "Hello"
