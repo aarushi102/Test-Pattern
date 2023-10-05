@@ -31,7 +31,7 @@ deploy_job:
     - chmod 600 ~/.ssh/id_rsa 
     - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
     - echo "######"
-    - ssh -T ubuntu@$EC2_IPADDRESS
+    - ssh ubuntu@$EC2_IPADDRESS
     - echo "Done"
     - cd /var/www/html/test-pattern/Test-Pattern
     # - git remote add origin https://github.com/aarushi102/Test-Pattern.git
