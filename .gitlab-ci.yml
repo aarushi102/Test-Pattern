@@ -38,7 +38,8 @@ deploy_job:
     - cd /var/www/html/Test-Pattern
     - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
     - git pull origin main  # Replace 'main' with your branch name
-
+    
+    - echo "Hello"
       
   only:
     - main
