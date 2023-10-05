@@ -29,9 +29,10 @@ deploy_job:
      # Add GitLab host to known_hosts file
     # - ssh-keyscan -H 3.84.209.181 >> ~/.ssh/known_hosts 
     - chmod 600 ~/.ssh/id_rsa 
-    - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
+    # - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
     - ssh ubuntu@$EC2_IPADDRESS
     - cd /var/www/html/test-pattern/Test-Pattern
+    - git remote set-url origin https://github.com/aarushi102/Test-Pattern.git
     - git pull origin main  # Replace 'main' with your branch name
 
     - echo "Hello"
